@@ -28,9 +28,6 @@ main()
 async function main() {
   await mongoose.connect(MONGO_URL);
 }
-app.get("/", (req, res) => {
-  res.send("hi i am root");
-});
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
