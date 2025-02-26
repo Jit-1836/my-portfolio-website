@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const Portfolio = require("../Portfolio2(jit)/model/portfolio");
+const portfolio = require("./model/portfolio");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
@@ -39,7 +39,7 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.get("/portfolio", async (req, res) => {
-  const allportfolios = await Portfolio.find({});
+  const allportfolios = await portfolio.find({});
   res.render("index.ejs", { allportfolios });
 });
 
