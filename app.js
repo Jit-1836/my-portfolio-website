@@ -5,7 +5,9 @@ const portfolio = require("./model/portfolio");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const MONGO_URL = "mongodb://127.0.0.1:27017/portfolioweb";
+const MONGO_URL =
+  process.env.MONGO_URL || "mongodb://127.0.0.1:27017/portfolioweb";
+
 main()
   .then(() => {
     console.log("connect to DB");
@@ -23,6 +25,13 @@ main()
   .catch((err) => {
     console.log(err);
   });
+async function main() {
+  await mongoose.connect(MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000,
+  });
+}
 
 async function main() {
   await mongoose.connect(MONGO_URL);
