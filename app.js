@@ -34,6 +34,9 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
+app.get("/", (req, res) => {
+  res.send("hi,i am root");
+});
 app.get("/portfolio", async (req, res) => {
   const allportfolios = await portfolio.find({});
   res.render("index.ejs", { allportfolios });
